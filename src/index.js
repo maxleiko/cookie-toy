@@ -3,6 +3,7 @@ const path = require('path');
 const express = require('express');
 const session = require('express-session');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 const app = express();
 
 const CWD = process.cwd();
@@ -28,6 +29,9 @@ function privateMiddleware(req, res, next) {
 async function main() {
   const [port = '8787'] = process.argv.slice(2);
 
+  // use CORS
+  app.use(cors());
+
   // use cookies
   app.use(
     session({
@@ -52,6 +56,17 @@ async function main() {
       res.redirect('/');
     } else {
       res.sendFile(filepath('public/login.html'));
+    }
+  });
+
+  // public logout page
+  app.get('/logout', (req, res) => {
+    if (req.session.loggedIn) {
+      req.session.destroy(() => {
+        res.redirect('/');
+      });
+    } else {
+      res.redirect('/login');
     }
   });
 
