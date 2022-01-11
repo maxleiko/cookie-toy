@@ -4,7 +4,6 @@ const express = require('express');
 const session = require('express-session');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const app = express();
 
 const CWD = process.cwd();
 
@@ -28,6 +27,8 @@ function privateMiddleware(req, res, next) {
 
 async function main() {
   const [port = '8787'] = process.argv.slice(2);
+
+  const app = express();
 
   // use CORS
   app.use(cors());
