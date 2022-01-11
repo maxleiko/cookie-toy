@@ -1,0 +1,16 @@
+{
+  "name": "cookie-web",
+  "version": "0.1.0",
+  "description": "A toy cookie webserver",
+  "main": "src/index.js",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "DEBUG=express:* node src/index.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.1",
+    "express": "^4.17.2",
+    "express-session": "^1.17.2"
+  }
+}
